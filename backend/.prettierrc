@@ -1,0 +1,17 @@
+{
+  "singleQuote": true,
+  "trailingComma": "none",
+  "semi": true,
+  "printWidth": 120,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "test": "jest --no-cache --silent=false --verbose --json --outputFile=./test-results/test-output.json",
+    "format": "prettier --config .prettierrc --write \"**/*.{js,jsx,ts,tsx,json,css,html}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/busboy": "^1.5.4",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.4",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "prettier": "^3.5.1",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.3",
+    "uuid": "^11.0.5"
+  },
+  "dependencies": {
+    "busboy": "^0.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "ioredis": "^5.5.0",
+    "pg": "^8.13.3",
+    "sequelize": "^6.37.5",
+    "supertest": "^7.0.0",
+    "uuid": "^11.0.5"
+  }
+}
