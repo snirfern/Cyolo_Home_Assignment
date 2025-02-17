@@ -44,7 +44,7 @@ const DragAndDrop = ({
     if (fileInput.current) {
       fileInput.current.click();
     }
-  }, [fileInput.current]);
+  }, [fileInput]);
 
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +55,7 @@ const DragAndDrop = ({
       }
       uiStore.setErrorAlert('Please upload only images!');
     },
+      // eslint-disable-next-line
     [onFileUploadHandler]
   );
 
@@ -74,6 +75,7 @@ const DragAndDrop = ({
       }
       uiStore.setErrorAlert('Please upload only images!');
     },
+      // eslint-disable-next-line
     [onFileUploadHandler]
   );
 
