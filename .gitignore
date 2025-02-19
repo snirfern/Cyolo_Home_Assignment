@@ -3,3 +3,4 @@
 /frontend/build
 /frontend/node_modules
 /docker/tests/test-results
+/backend/uploads
