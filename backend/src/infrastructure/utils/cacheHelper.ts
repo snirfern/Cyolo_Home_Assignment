@@ -8,7 +8,7 @@ class CacheHelper {
   }
 
   async setValue(key: string, value: string, expiration?: number): Promise<void> {
-    await this.redisInstance.setKeyValue(key, value, expiration);
+    await this.redisInstance.setKeyValue(key, value, expiration ?? 60);
   }
 
   async getValue<T>(key: string): Promise<T | null> {

@@ -4,6 +4,7 @@ import CacheHelper from '../../../../src/infrastructure/utils/cacheHelper';
 import { generateHash, writeFileAsync } from '../../../../src/infrastructure/utils/filesUtils';
 import { Readable } from 'stream';
 import { convertToSeconds } from '../../../../src/infrastructure/utils/utils';
+import path from "path";
 
 jest.mock('../../../../src/infrastructure/utils/filesUtils', () => ({
   generateHash: jest.fn(),
@@ -92,7 +93,7 @@ describe('ImageService', () => {
       expect(mockCache.setValue).toHaveBeenCalledWith(
         mockNewFileId,
         JSON.stringify({
-          filePath: `${mockFolder}/${mockNewFileId}.${mockFileType}`,
+          filePath: path.join(mockFolder, `${mockNewFileId}.${mockFileType}`),
           fileType: mockFileType
         }),
         convertToSeconds(mockRetention.toString())

@@ -7,7 +7,6 @@ import { InvalidFile } from '../../../../src/domain/errrors/errors';
 jest.mock('../../../../src/infrastructure/utils/filesUtils', () => ({
   serveFileToClient: jest.fn()
 }));
-jest.mock('busboy');
 describe('ImageController', () => {
   let mockImageService: jest.Mocked<ImageService>;
   let imageController: ImageController;
@@ -30,7 +29,6 @@ describe('ImageController', () => {
     };
 
     mockRes = {
-      status: jest.fn().mockReturnThis(),
       json: jest.fn()
     };
 

@@ -10,7 +10,6 @@ const errorHandler = (err: AppError | Error, req: Request, res: Response, next: 
   }
 
   res.status(statusCode).json({
-    status: 'error',
     message
   });
 
