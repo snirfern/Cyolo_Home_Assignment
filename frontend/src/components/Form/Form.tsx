@@ -1,5 +1,5 @@
-import React, { ReactNode, useEffect, useState } from 'react';
-import { InputAdornment, styled, TextField } from '@mui/material';
+import React, {ReactNode, useEffect, useState} from 'react';
+import {InputAdornment, styled, TextField} from '@mui/material';
 import CustomButton from '../CustomButton/CustomButton';
 import DragAndDrop from '../DragAndDrop/DragAndDrop';
 
@@ -44,22 +44,20 @@ const FormFooter = styled('div')({
 });
 
 const Form = ({
-  fields,
-  approveButtonText,
-  handleSubmit,
-  loading = false,
-}: IFormField) => {
-  const [formData, setFormData] = useState<
-    { value: any; hasError: boolean; didChange: boolean }[]
-  >([]);
+                fields,
+                approveButtonText,
+                handleSubmit,
+                loading = false,
+              }: IFormField) => {
+  const [formData, setFormData] = useState<{ value: any; hasError: boolean; didChange: boolean }[]>([]);
 
   useEffect(() => {
     setFormData(
-      fields.map((cF) => ({
-        value: cF?.value ?? '',
-        hasError: false,
-        didChange: false,
-      }))
+        fields.map((cF) => ({
+          value: cF?.value ?? '',
+          hasError: false,
+          didChange: false,
+        }))
     );
   }, [fields]);
 
@@ -77,82 +75,83 @@ const Form = ({
 
   const submitHandler = () => {
     const data = formData.reduce<{ [key: string]: number | string }>(
-      (acc, item, index) => {
-        if (fields[index].value !== item.value) {
-          acc[fields[index].fieldName] = item.value;
-        }
-        return acc;
-      },
-      {}
+        (acc, item, index) => {
+          if (fields[index].value !== item.value) {
+            acc[fields[index].fieldName] = item.value;
+          }
+          return acc;
+        },
+        {}
     );
 
     handleSubmit(data);
+
   };
 
   const isFormValid =
-    formData.every((cField) => !cField.hasError && cField.value !== '') &&
-    formData.some((cField) => cField.didChange);
+      formData.every((cField) => !cField.hasError && cField.value !== '') &&
+      formData.some((cField) => cField.didChange);
 
   return (
-    <FormContainer>
-      {formData.length > 0 &&
+      <FormContainer>
+        {formData.length > 0 &&
         fields.map((field, index) => (
-          <FormFieldStyle key={`form_field_${index}`}>
-            {field.type !== 'dragAndDrop' && (
-              <TextField
-                data-cy={`form_field_input_${field.fieldName}`}
-                error={formData[index].hasError}
-                multiline={!!field.rows}
-                rows={field.rows}
-                label={field.title}
-                name={`${field.fieldName}_${index}`}
-                value={formData[index].value}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                type={field.type}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleChange(e.target.value, index)
-                }
-                variant="outlined"
-                placeholder={field?.placeholder ?? ''}
-                slotProps={
-                  field.startAdornment
-                    ? {
-                        input: {
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              {field.startAdornment}
-                            </InputAdornment>
-                          ),
-                        },
+            <FormFieldStyle key={`form_field_${index}`}>
+              {field.type !== 'dragAndDrop' && (
+                  <TextField
+                      data-cy={`form_field_input_${field.fieldName}`}
+                      error={formData[index].hasError}
+                      multiline={!!field.rows}
+                      rows={field.rows}
+                      label={field.title}
+                      name={`${field.fieldName}_${index}`}
+                      value={formData[index].value}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      type={field.type}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          handleChange(e.target.value, index)
                       }
-                    : {}
-                }
-                style={{ width: 400 }}
-              />
-            )}
-            {field.type === 'dragAndDrop' && (
-              <DragAndDrop
-                selectedFile={formData[index].value.name}
-                onFileUploadHandler={(file: File) => handleChange(file, index)}
-              />
-            )}
-          </FormFieldStyle>
+                      variant="outlined"
+                      placeholder={field?.placeholder ?? ''}
+                      slotProps={
+                        field.startAdornment
+                            ? {
+                              input: {
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                      {field.startAdornment}
+                                    </InputAdornment>
+                                ),
+                              },
+                            }
+                            : {}
+                      }
+                      style={{width: 400}}
+                  />
+              )}
+              {field.type === 'dragAndDrop' && (
+                  <DragAndDrop
+                      selectedFile={formData[index].value.name}
+                      onFileUploadHandler={(file: File) => handleChange(file, index)}
+                  />
+              )}
+            </FormFieldStyle>
         ))}
 
-      <FormFooter data-testid="form_footer">
-        <CustomButton
-          style={{ margin: 20 }}
-          loading={loading}
-          variant="outlined"
-          onClick={submitHandler}
-          text={approveButtonText ?? 'Submit'}
-          disabled={!isFormValid}
-          data-cy="FormSubmitButton"
-        />
-      </FormFooter>
-    </FormContainer>
+        <FormFooter data-testid="form_footer">
+          <CustomButton
+              style={{margin: 20}}
+              loading={loading}
+              variant="outlined"
+              onClick={submitHandler}
+              text={approveButtonText ?? 'Submit'}
+              disabled={!isFormValid}
+              data-cy="FormSubmitButton"
+          />
+        </FormFooter>
+      </FormContainer>
   );
 };
 

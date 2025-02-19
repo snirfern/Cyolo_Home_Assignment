@@ -31,7 +31,6 @@ class FileController {
       this.fileStore.setNewFileUrl(newFileUrl);
       this.modalStore.setModal(ModalType.NewFileCreationModal);
     } catch (e) {
-      console.log(e);
       this.uiStore.setErrorAlert('Failed to upload file');
     }
     this.fileStore.setLoading();

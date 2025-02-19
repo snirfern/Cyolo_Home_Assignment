@@ -14,10 +14,10 @@ class ApiGateway implements BaseApiGateway {
   }
 
   async put<T>(
-    url: string,
-    data: any,
-    params: Record<string, any> = {},
-    headers?: Record<string, any>
+      url: string,
+      data: any,
+      params: Record<string, any> = {},
+      headers?: Record<string, any>
   ): Promise<T> {
     const config: AxiosRequestConfig = {
       params,
