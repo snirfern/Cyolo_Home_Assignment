@@ -28,7 +28,7 @@ class ImageService {
         retention: number = 60
     ): Promise<string> {
 
-        const newFileId = generateHash(process.env.HOST + new Date().valueOf().toString() + originalName, 20);
+        const newFileId = generateHash(`${process.env.HOST}_${new Date().valueOf()}${process.hrtime()[1]}`, 20);
         await writeFileAsync(fileStream, newFileId + '.' + fileType, folder);
 
         const newImage: IImage = {

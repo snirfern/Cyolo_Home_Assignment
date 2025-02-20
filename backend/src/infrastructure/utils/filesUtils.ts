@@ -44,7 +44,7 @@ const serveFileToClient = async (filePath: string, fileType: string, res: Respon
 };
 
 const generateHash = (str: string, length: number = 32): string => {
-    return crypto.createHash('md5').update(str).digest('hex').slice(0, length);
+    return crypto.createHash('sha256').update(str).digest('hex').slice(0, length);
 };
 const extractFileType = (fileName: string): string => {
     return fileName.slice(fileName.lastIndexOf('.') + 1).toLowerCase();
